@@ -32,6 +32,7 @@
 
     <div id="gyphs-view"></div>
 
+</div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
       // Initial array of gyphs
@@ -41,7 +42,8 @@
       function displayGyphInfo() {
 
           var gyph = $(this).attr("data-name");
-          var queryURL = "http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=FCTHXLcIiHEvQX34TV2JAoemdZWg8LXy" + gyph + "&y=&plot=short&apikeyFCTHXLcIiHEvQX34TV2JAoemdZWg8LXy&limit=5";
+          console.log(this)
+          var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gyph + "&api_key=FCTHXLcIiHEvQX34TV2JAoemdZWg8LXy";
 
         // YOUR CODE GOES HERE!!!
         $.ajax({
@@ -62,17 +64,16 @@
         // Looping through the array of gyphs
         for (var i = 0; i < gyphs.length; i++) {
 
-          // Then dynamicaly generating buttons for each gyph in the array
-          // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
           var a = $("<button>");
-          // Adding a class
           a.addClass("gyph");
-          // Added a data-attribute
           a.attr("data-name", gyphs[i]);
           // Provided the initial button text
           a.text(gyphs[i]);
+
+          a.prepend();
+          a.prepend(a);
           // Added the button to the HTML
-          $("#gyphs-view").append(a);
+          $("#gyphs-view").prepend(a);
         }
       }
 
@@ -95,11 +96,12 @@
       // We're adding the event listener to the document itself because it will
       // work for dynamically generated elements
       // $(".movies").on("click") will only add listeners to elements that are on the page at that time
-      $(document).on("click", ".gyph", displayGyphInfo);
+      $(document).on("click", ".gyph", function() {
+            displayGyphInfo()
+      });
 
       // Calling the renderButtons function to display the intial buttons
       renderButtons();
     </script>
-    </div>
 </body>
 </html>
