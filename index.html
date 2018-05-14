@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Gyphy</title>
+  <title>Giffy</title>
   <style type="text/css">
     button,
     div,
@@ -17,33 +17,33 @@
 <body>
 
   <div class="container">
-    <h1>Gyphy Search</h1>
+    <h1>Giffy Search</h1>
 
      <!-- Rendered Buttons will get Dumped Here  -->
-    <div id="gyphs-view"></div>
+    <div id="giffs-view"></div>
 
-    <form id="gyph-form">
-      <label for="gyph-input">Add a Gyph Topic</label>
-      <input type="text" id="gyph-input"><br>
+    <form id="giff-form">
+      <label for="giff-input">Add a Giff Topic</label>
+      <input type="text" id="giff-input"><br>
 
-      <!-- Button triggers new gyph to be added -->
-      <input id="add-gyph" type="submit" value="Add a Gyph">
+      <!-- Button triggers new giff to be added -->
+      <input id="add-giff" type="submit" value="Add a Giff">
     </form>
 
-    <div id="gyphs-view"></div>
+    <div id="giffs-view"></div>
 
 </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
-      // Initial array of gyphs
-      var gyphs = ["Bird", "Dog", "Cat"];
+      // Initial array of giffs
+      var giffs = ["Bird", "Dog", "Cat"];
 
-      // Generic function for capturing the gyph name from the data-attribute
-      function displayGyphInfo() {
+      // Generic function for capturing the giff name from the data-attribute
+      function displayGiffInfo() {
 
-          var gyph = $(this).attr("data-name");
+          var giff = $(this).attr("data-name");
           console.log(this)
-          var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gyph + "&api_key=FCTHXLcIiHEvQX34TV2JAoemdZWg8LXy";
+          var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + giff + "&api_key=FCTHXLcIiHEvQX34TV2JAoemdZWg8LXy";
 
         // YOUR CODE GOES HERE!!!
         $.ajax({
@@ -56,38 +56,38 @@
 
       }
 
-      // Function for displaying gyph data
+      // Function for displaying giff data
       function renderButtons() {
 
-        // Deleting the gyphs prior to adding new gyphs
+        // Deleting the giffs prior to adding new giffs
         // (this is necessary otherwise we will have repeat buttons)
-        $("#gyphs-view").empty();
+        $("#giffs-view").empty();
 
-        // Looping through the array of gyphs
-        for (var i = 0; i < gyphs.length; i++) {
+        // Looping through the array of giffs
+        for (var i = 0; i < giffs.length; i++) {
 
           var a = $("<button>");
-          a.addClass("gyph");
-          a.attr("data-name", gyphs[i]);
+          a.addClass("giff");
+          a.attr("data-name", giffs[i]);
           // Provided the initial button text
-          a.text(gyphs[i]);
+          a.text(giffs[i]);
 
           a.prepend();
           a.prepend(a);
           // Added the button to the HTML
-          $("#gyphs-view").prepend(a);
+          $("#giffs-view").append(a);
         }
       }
 
       // This function handles events where one button is clicked
-      $("#add-gyph").on("click", function(event) {
+      $("#add-giff").on("click", function(event) {
         event.preventDefault();
 
         // This line grabs the input from the textbox
-        var gyph = $("#gyph-input").val().trim();
+        var giff = $("#giff-input").val().trim();
 
         // The movie from the textbox is then added to our array
-        gyphs.push(gyph);
+        giffs.push(giff);
 
         // Calling renderButtons which handles the processing of our movie array
         renderButtons();
@@ -98,8 +98,8 @@
       // We're adding the event listener to the document itself because it will
       // work for dynamically generated elements
       // $(".movies").on("click") will only add listeners to elements that are on the page at that time
-      $(document).on("click", ".gyph", function() {
-            displayGyphInfo()
+      $(document).on("click", ".giff", function() {
+            displayGiffInfo()
       });
 
       // Calling the renderButtons function to display the intial buttons
